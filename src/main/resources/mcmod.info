@@ -1,0 +1,17 @@
+[
+{
+"modid": "WoodlandsWorld",
+"name": "Woodlands World",
+"description": "Hi!",
+"version": "1.0",
+"credits": "",
+"logoFile": "",
+"mcversion": "1.7.10",
+"url": "",
+"updateUrl": "",
+"authorList": [ "MCManuelLP" ],
+"parent":"",
+"screenshots": [],
+"dependencies": []
+}
+]
