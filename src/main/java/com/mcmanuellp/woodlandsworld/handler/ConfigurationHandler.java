@@ -18,25 +18,26 @@ public class ConfigurationHandler
         if(configuration == null)
         {
             configuration = new Configuration(configFile);
+            loadConfiguration();
+        }
+    }
+
+    public static void loadConfiguration()
+    {
+        testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, true, "HI hw r u");
+
+        if(configuration.hasChanged())
+        {
+            configuration.save();
         }
     }
 
     @SubscribeEvent
     public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
     {
-        if(event.modID.equalsIgnoreCase(Reference.MOD_ID))
+        if (event.modID.equalsIgnoreCase(Reference.MOD_ID))
         {
-            //resync configs
-        }
-    }
-
-    public void loadConfigurations()
-    {
-        testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, false, "V me rocks");
-
-        if(configuration.hasChanged())
-        {
-            configuration.save();
+            loadConfiguration();
         }
     }
 }
