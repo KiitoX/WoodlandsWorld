@@ -24,7 +24,6 @@ public class WoodlandsWorld
     public void preInit(FMLPreInitializationEvent event)
     {
         //init network handling, mod config, items & blocks
-
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
         LogHelper.info("Pre Initialization Complete!");

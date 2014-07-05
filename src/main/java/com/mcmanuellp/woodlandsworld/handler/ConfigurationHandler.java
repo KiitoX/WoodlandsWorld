@@ -22,9 +22,9 @@ public class ConfigurationHandler
         }
     }
 
-    public static void loadConfiguration()
+    private static void loadConfiguration()
     {
-        testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, true, "HI hw r u");
+        testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, false, "HI hw r u");
 
         if(configuration.hasChanged())
         {
