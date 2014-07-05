@@ -1,7 +1,6 @@
 package com.mcmanuellp.woodlandsworld;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLFingerprintViolationEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
