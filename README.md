@@ -1,5 +1,5 @@
-Woodlands-World-Mod
-===================
+WoodlandsWorldMod
+=================
 
 Woodlands World and Low Tech Crafting Mod for Minecraft
 
