@@ -1,5 +1,6 @@
 package com.mcmanuellp.woodlandsworld;
 
+import com.mcmanuellp.woodlandsworld.configuration.ConfigurationHandler;
 import com.mcmanuellp.woodlandsworld.proxy.IProxy;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.common.Mod;
@@ -14,7 +15,7 @@ public class WoodlandsWorld
     @Mod.Instance(Reference.MOD_ID)
     public static WoodlandsWorld instance;
 
-    @SidedProxy(clientSide = "com.mcmanuellp.woodlandsworld.proxy.ClientProxy", serverSide = "com.mcmanuellp.woodlandsworld.proxy.ServerProxy")
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static IProxy proxy;
 
     @Mod.EventHandler
@@ -22,6 +23,7 @@ public class WoodlandsWorld
     {
         //init network handling, mod config, items & blocks
 
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
     }
 
     @Mod.EventHandler
