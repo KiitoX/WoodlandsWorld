@@ -1,4 +1,4 @@
-Woodlands-World-Mod-To-Do-List
+Woodlands World Mod To-Do-List
 ==============================
 
 **Woodlands World and Low Tech Crafting Mod for Minecraft**
