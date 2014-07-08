@@ -14,6 +14,6 @@ public class ModItems
     public static void init()
     {
         GameRegistry.registerItem(hungerDebug, "hungerDebug");
-        GameRegistry.registerItem(rottableTest, "rottableTest");
+    //    GameRegistry.registerItem(rottableTest, "rottableTest");
     }
 }

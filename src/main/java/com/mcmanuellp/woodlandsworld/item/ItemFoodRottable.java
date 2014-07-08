@@ -9,7 +9,7 @@ public class ItemFoodRottable extends ItemWW
 
     public int getTickMax(int max)
     {
-        max = expireMax;
+        expireMax = max;
         LogHelper.info("Hi now look closely: " + expireMax);
         return expireMax;
     }
