@@ -1,5 +1,5 @@
 package com.mcmanuellp.woodlandsworld.item;
-
+//Not Tutorial
 import com.mcmanuellp.woodlandsworld.utility.LogHelper;
 
 public class ItemFoodRottable extends ItemWW
