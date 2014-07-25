@@ -1,6 +1,7 @@
 package com.mcmanuellp.woodlandsworld;
 
 import com.mcmanuellp.woodlandsworld.handler.ConfigurationHandler;
+import com.mcmanuellp.woodlandsworld.init.ModBlocks;
 import com.mcmanuellp.woodlandsworld.init.ModItems;
 import com.mcmanuellp.woodlandsworld.proxy.IProxy;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
@@ -30,6 +31,8 @@ public class WoodlandsWorld
         LogHelper.info("Pre Initialization Complete!");
 
         ModItems.init();
+
+        ModBlocks.init();
     }
 
     @Mod.EventHandler

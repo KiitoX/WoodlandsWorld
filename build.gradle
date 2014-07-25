@@ -22,8 +22,16 @@ group= "com.mcmanuellp.woodlandsworld" // http://maven.apache.org/guides/mini/gu
 archivesBaseName = "WoodlandsWorld"
 
 minecraft {
-    version = "1.7.10-10.13.0.1160" // to update forge, update this number to the matching forge version i need, then open idea's terminal and do 'gradlew clean' then do 'gradlew setupDecompWorkspace' then 'gradlew idea' //MCManuelLP wrote this
-    assetDir = "eclipse/assets"     //don't forget the reference class and mcmod.info
+    version = "1.7.10-10.13.0.1188"
+    /** to update forge, update this number to the matching forge version i need,
+     *  then open idea's terminal and do 'gradlew clean' then do 'gradlew setupDecompWorkspace'
+     *  then 'gradlew idea' then refresh project that's it!
+     *
+     *  don't forget the reference class and mcmod.info if MCVersion changes
+     *
+     *  to update gradle do 'gradlew clean --refresh-dependencies'
+     *
+     *///MCManuelLP wrote this
 }
 
 dependencies {
