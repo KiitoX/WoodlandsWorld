@@ -8,6 +8,5 @@ public class BlockLogPile extends BlockWW
     {
         super();
         this.setBlockName("logPile");
-	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 }

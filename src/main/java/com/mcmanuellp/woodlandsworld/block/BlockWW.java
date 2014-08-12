@@ -1,5 +1,6 @@
 package com.mcmanuellp.woodlandsworld.block;
 
+import com.mcmanuellp.woodlandsworld.creativetab.CreativeTabWW;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,11 +13,13 @@ public class BlockWW extends Block
     public BlockWW(Material material)
     {
         super(material);
+	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
     public BlockWW()
     {
         this(Material.rock);
+	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
     @Override

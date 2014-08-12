@@ -1,5 +1,6 @@
 package com.mcmanuellp.woodlandsworld.item;
 
+import com.mcmanuellp.woodlandsworld.creativetab.CreativeTabWW;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +13,7 @@ public class ItemWW extends Item
     public ItemWW()
     {
         super();
+	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
     @Override

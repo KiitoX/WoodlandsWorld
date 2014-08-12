@@ -29,9 +29,7 @@ public class WoodlandsWorld
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
         LogHelper.info("Pre Initialization Complete!");
-
         ModItems.init();
-
         ModBlocks.init();
     }
 

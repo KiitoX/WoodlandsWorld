@@ -11,9 +11,9 @@ public class ItemHungerDebug extends ItemWW
     {
         super();
         this.setUnlocalizedName("hungerDebug");
-	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
+	//not tutorial
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {

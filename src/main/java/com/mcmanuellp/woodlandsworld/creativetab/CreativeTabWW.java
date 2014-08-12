@@ -7,18 +7,12 @@ import net.minecraft.item.Item;
 
 public class CreativeTabWW
 {
-	public static final CreativeTabs WW_TAB = new CreativeTabs(Reference.MOD_ID)
+	public static final CreativeTabs WW_TAB = new CreativeTabs(Reference.MOD_ID.toLowerCase())
 	{
 		@Override
 		public Item getTabIconItem()
 		{
 			return ModItems.hungerDebug;
-		}
-
-		@Override
-		public String getTranslatedTabLabel()
-		{
-			return "Woodlands World";
 		}
 	};
 }
