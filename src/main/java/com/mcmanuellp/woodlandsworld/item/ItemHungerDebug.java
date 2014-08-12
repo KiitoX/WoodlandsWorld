@@ -1,5 +1,6 @@
 package com.mcmanuellp.woodlandsworld.item;
 
+import com.mcmanuellp.woodlandsworld.creativetab.CreativeTabWW;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -10,6 +11,7 @@ public class ItemHungerDebug extends ItemWW
     {
         super();
         this.setUnlocalizedName("hungerDebug");
+	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
     @Override

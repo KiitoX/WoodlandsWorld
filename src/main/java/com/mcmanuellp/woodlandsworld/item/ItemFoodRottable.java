@@ -2,6 +2,7 @@ package com.mcmanuellp.woodlandsworld.item;
 //Not Tutorial
 import com.mcmanuellp.woodlandsworld.utility.LogHelper;
 
+@Deprecated
 public class ItemFoodRottable extends ItemWW
 {
     public static int expireMax;
