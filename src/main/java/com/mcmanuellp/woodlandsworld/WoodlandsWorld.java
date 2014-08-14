@@ -3,6 +3,7 @@ package com.mcmanuellp.woodlandsworld;
 import com.mcmanuellp.woodlandsworld.handler.ConfigurationHandler;
 import com.mcmanuellp.woodlandsworld.init.ModBlocks;
 import com.mcmanuellp.woodlandsworld.init.ModItems;
+import com.mcmanuellp.woodlandsworld.init.Recipes;
 import com.mcmanuellp.woodlandsworld.proxy.IProxy;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import com.mcmanuellp.woodlandsworld.utility.LogHelper;
@@ -12,6 +13,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class WoodlandsWorld
@@ -37,6 +39,7 @@ public class WoodlandsWorld
     public void init(FMLInitializationEvent event)
     {
         //init gui's, tile entities, crafting, general event handlers
+	    Recipes.init();
         LogHelper.info("Initialization Complete!");
     }
 
@@ -45,5 +48,13 @@ public class WoodlandsWorld
     {
         //init wrapping up everything
         LogHelper.info("Post Initialization Complete!");
+
+	    //debug---------------------------------------------------------------------------------
+	    for (String oreName : OreDictionary.getOreNames())
+	    {
+			LogHelper.info(oreName);
+		    OreDictionary.getOres(oreName);
+	    }
+	    //--------------------------------------------------------------------------------------
     }
 }
