@@ -19,7 +19,7 @@ public class BlockBonfire extends BlockWW_BUSH
 	}
 
 	/**
-	 * A randomly called display update to be able to add particles or other items for display
+	 * WARNING: Wall of text ahead!
 	 */
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -35,93 +35,53 @@ public class BlockBonfire extends BlockWW_BUSH
 			double dd05 = 0.5F;
 			double dd06 = 0.6F;
 
-			double d030 = 0.30F; double d035 = 0.35F; double d040 = 0.40F; double d045 = 0.45F; double d050 = 0.50F; double d055 = 0.55F; double d060 = 0.60F;
-			double d065 = 0.65F; double d070 = 0.70F; double d075 = 0.75F; double d080 = 0.80F; double d085 = 0.85F; double d090 = 0.90F; double d095 = 0.95F;
+			double d030 = 0.30F;
+			double d040 = 0.40F;
+			double d050 = 0.50F;
+			double d060 = 0.60F;
+			double d070 = 0.70F;
+			double d080 = 0.80F;
 
 			par1World.spawnParticle("smoke", x + dd05, y + d030, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d030, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d035, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d035, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d075, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d075, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d080, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d080, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d085, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d085, z + dd05, 0.0D, 0.0D, 0.0D);
 
 			par1World.spawnParticle("smoke", x + dd04, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd04, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd04, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd04, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd04, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd04, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd04, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd04, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd04, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd04, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd04, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd04, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd04, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd04, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
 
 			par1World.spawnParticle("smoke", x + dd06, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd06, y + d040, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd06, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd06, y + d045, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd06, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd06, y + d050, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd06, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd06, y + d055, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd06, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd06, y + d060, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd06, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd06, y + d065, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd06, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd06, y + d070, z + dd05, 0.0D, 0.0D, 0.0D);
 
 			par1World.spawnParticle("smoke", x + dd05, y + d040, z + dd04, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d040, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d045, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d045, z + dd04, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d050, z + dd04, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d050, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d055, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d055, z + dd04, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d060, z + dd04, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d060, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d065, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d065, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d070, z + dd04, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d070, z + dd04, 0.0D, 0.0D, 0.0D);
 
 			par1World.spawnParticle("smoke", x + dd05, y + d040, z + dd06, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d040, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d045, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d045, z + dd06, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d050, z + dd06, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d050, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d055, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d055, z + dd06, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("smoke", x + dd05, y + d060, z + dd06, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("flame", x + dd05, y + d060, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d065, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d065, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("smoke", x + dd05, y + d070, z + dd06, 0.0D, 0.0D, 0.0D);
-			par1World.spawnParticle("flame", x + dd05, y + d070, z + dd06, 0.0D, 0.0D, 0.0D);
 		}
 	}
 
