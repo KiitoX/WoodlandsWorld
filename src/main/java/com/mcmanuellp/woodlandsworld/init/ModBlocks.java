@@ -1,7 +1,6 @@
 package com.mcmanuellp.woodlandsworld.init;
 
-import com.mcmanuellp.woodlandsworld.block.BlockLogPile;
-import com.mcmanuellp.woodlandsworld.block.BlockWW;
+import com.mcmanuellp.woodlandsworld.block.*;
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -9,9 +8,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModBlocks
 {
     public static final BlockWW logPile = new BlockLogPile();
+	public static final BlockBonfire bonfire = new BlockBonfire();
+	public static final BlockWW twig = new BlockTwig();
+
 
     public static void init()
     {
         GameRegistry.registerBlock(logPile, "logPile");
+	    GameRegistry.registerBlock(bonfire, "bonfire");
+	    GameRegistry.registerBlock(twig, "twig");
     }
 }

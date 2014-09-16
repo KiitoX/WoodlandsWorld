@@ -22,8 +22,8 @@ group= "com.mcmanuellp.woodlandsworld" // http://maven.apache.org/guides/mini/gu
 archivesBaseName = "WoodlandsWorld"
 
 minecraft {
-    version = "1.7.10-10.13.0.1202"
-    /** to update forge, update this number to the matching forge version i need,
+    version = "1.7.10-10.13.1.1217"
+    /** to update forge, update ^ this number to the matching forge version i need,
      *  then open idea's terminal and do 'gradlew clean'
      *  to update gradle do 'gradlew clean --refresh-dependencies' instead
      *  then do 'gradlew setupDecompWorkspace'

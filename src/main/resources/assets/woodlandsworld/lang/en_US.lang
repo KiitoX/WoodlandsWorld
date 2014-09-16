@@ -1,3 +1,5 @@
 item.woodlandsworld:hungerDebug.name=Hunger Debug Item
 tile.woodlandsworld:logPile.name=Log Pile
+tile.woodlandsworld:bonfire.name=Bonfire
+tile.woodlandsworld:twig.name=Twig
 itemGroup.woodlandsworld=Woodlands World

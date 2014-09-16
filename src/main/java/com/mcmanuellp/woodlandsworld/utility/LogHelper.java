@@ -40,7 +40,7 @@ public class LogHelper
         log(Level.INFO, object);
     }
 
-    // below don't output in log
+    // below doesn't output in log
 
     public static void debug(Object object)
     {

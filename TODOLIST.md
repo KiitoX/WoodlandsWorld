@@ -6,6 +6,6 @@ Woodlands World Mod Plans
 
 * A World Gen with only rivers, seas, forest, some hills, mountains and plains with single trees scattered around
 
-* Some kind of implemetation for rotting food replacing the food ingame right now
+* Some kind of implementation for rotting food replacing the food in game right now
 
 * Update and implement [Block Physics Mod] (http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1283267-)
