@@ -1,7 +1,5 @@
 package com.mcmanuellp.woodlandsworld.reference;
 
-import sun.java2d.pipe.SolidTextRenderer;
-
 public class Reference
 {
     public static final String MOD_ID = "woodlandsworld";

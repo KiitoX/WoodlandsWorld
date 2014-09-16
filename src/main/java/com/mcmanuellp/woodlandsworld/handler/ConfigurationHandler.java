@@ -11,6 +11,7 @@ public class ConfigurationHandler
 {
     public static Configuration configuration;
     public static boolean testValue = false;
+	public static boolean bonfireTexture = false;
 
     public static void init(File configFile)
     {
@@ -25,6 +26,8 @@ public class ConfigurationHandler
     private static void loadConfiguration()
     {
         testValue = configuration.getBoolean("configValue", Configuration.CATEGORY_GENERAL, false, "HI hw r u");
+
+	    bonfireTexture = configuration.getBoolean("bonfireTexture", Configuration.CATEGORY_GENERAL, false, "If true, bonfire will have static fire texture press F3+T to refresh textures in game otherwise it needs a restart");
 
         if(configuration.hasChanged())
         {

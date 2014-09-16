@@ -25,7 +25,7 @@ public class BlockWW extends Block
 
     public BlockWW()
     {
-        this(Material.rock);
+        super(Material.rock);
 	    this.setCreativeTab(CreativeTabWW.WW_TAB);
     }
 
