@@ -1,6 +1,5 @@
 package com.mcmanuellp.woodlandsworld.item;
 
-import com.mcmanuellp.woodlandsworld.creativetab.CreativeTabWW;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -13,10 +12,31 @@ public class ItemHungerDebug extends ItemWW
         this.setUnlocalizedName("hungerDebug");
     }
 
-	//not tutorial
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
     {
-        return itemStack;//TODO drain either 2 or 20/max saturation
+	    if(entityPlayer.isSneaking())
+	    {
+		    if(entityPlayer.getFoodStats().getFoodLevel() > 0)
+		    {
+		    	entityPlayer.getFoodStats().setFoodLevel(0);
+		    }
+		    else
+		    {
+			    entityPlayer.getFoodStats().setFoodLevel(20);
+		    }
+	    }
+	    else
+	    {
+		    if(entityPlayer.getFoodStats().getFoodLevel() > 1)
+		    {
+			    entityPlayer.getFoodStats().addStats(-2, 0F);
+		    }
+		    else
+		    {
+			    entityPlayer.getFoodStats().setFoodLevel(0);
+		    }
+	    }
+        return itemStack;
     }
 }

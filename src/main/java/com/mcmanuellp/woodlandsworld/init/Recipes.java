@@ -21,7 +21,9 @@ public class Recipes
 	 */
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.hungerDebug), " p ", "pdp", " p ",
-						  'p', new ItemStack(Items.porkchop), 'd', "dyePink"));
+						                      'p', new ItemStack(Items.porkchop), 'd', "dyePink"));
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.bonfire), " s ", "sws", 's', "stickWood", 'w', "logWood"));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.logPile), "logWood", "logWood", "logWood", "logWood",
 													  new ItemStack(Items.string)));
