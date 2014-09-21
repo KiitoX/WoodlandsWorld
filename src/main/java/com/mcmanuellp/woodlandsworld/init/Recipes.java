@@ -1,8 +1,6 @@
 package com.mcmanuellp.woodlandsworld.init;
 
-import com.mcmanuellp.woodlandsworld.handler.BonfireRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -27,7 +25,8 @@ public class Recipes
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.bonfire), " s ", "sws", 's', "stickWood", 'w', "logWood"));
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.logPile), "logWood", "logWood", "logWood", "logWood",
-													  new ItemStack(Items.string)));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModBlocks.logPile), "logWood", "logWood",
+		                                              "logWood", "logWood",
+		                                              new ItemStack(Items.string)));
 	}
 }

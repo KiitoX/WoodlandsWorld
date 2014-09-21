@@ -176,14 +176,13 @@ public class BonfireRecipes
 	{
 		ItemStack[] mInv = entityPlayer.inventory.mainInventory;
 
-		for (int i = 0; i < mInv.length; ++i)
+		for(ItemStack aMInv : mInv)
 		{
-			if (mInv[i] != null && ItemStack.areItemStacksEqual(mInv[i], itemStack) && mInv[i].stackSize < 64 && mInv[i].stackSize > 0)
+			if(aMInv != null && ItemStack.areItemStacksEqual(aMInv, itemStack) && aMInv.stackSize < 64 && aMInv.stackSize > 0)
 			{
 				return true;
 			}
 		}
-
 		return false;
 	}
 }

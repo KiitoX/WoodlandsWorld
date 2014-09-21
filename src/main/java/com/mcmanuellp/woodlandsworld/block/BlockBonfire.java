@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class BlockBonfire extends BlockWW
 {
-	public static int maxSubBlocks = 16;
+	public static final int maxSubBlocks = 16;
 
 	public BlockBonfire()
 	{
@@ -191,7 +191,7 @@ public class BlockBonfire extends BlockWW
 		InventoryPlayer inv = entityPlayer.inventory;
 		BonfireRecipes bbq = BonfireRecipes.smelting();
 
-		if(entityPlayer.getHeldItem() != null)//TODO fix all the f***ing things
+		if(entityPlayer.getHeldItem() != null)
 		{
 			if(bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.coal, 1, 0)) ||
 			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.coal, 1, 1)))

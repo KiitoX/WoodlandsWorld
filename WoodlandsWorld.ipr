@@ -57,6 +57,8 @@
           <option name="ADD_NONJAVA_TO_ENTRIES" value="true" />
         </inspection_tool>
         <inspection_tool class="UnusedParameters" enabled="true" level="INFO" enabled_by_default="true" />
+        <inspection_tool class="UnusedProperty" enabled="false" level="WARNING" enabled_by_default="false" />
+        <inspection_tool class="XmlUnboundNsPrefix" enabled="false" level="WARNING" enabled_by_default="false" />
       </profile>
     </profiles>
     <option name="PROJECT_PROFILE" value="Project Default" />

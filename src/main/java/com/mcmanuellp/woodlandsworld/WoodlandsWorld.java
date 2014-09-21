@@ -1,6 +1,5 @@
 package com.mcmanuellp.woodlandsworld;
 
-import com.mcmanuellp.woodlandsworld.handler.BonfireRecipes;
 import com.mcmanuellp.woodlandsworld.handler.ConfigurationHandler;
 import com.mcmanuellp.woodlandsworld.init.ModBlocks;
 import com.mcmanuellp.woodlandsworld.init.ModItems;
@@ -14,14 +13,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import sun.rmi.runtime.Log;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
-public class WoodlandsWorld
+public class WoodlandsWorld//TODO do the key binding tutorial
 {
     @Mod.Instance(Reference.MOD_ID)
     public static WoodlandsWorld instance;
