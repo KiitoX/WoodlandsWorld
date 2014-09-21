@@ -1,11 +1,13 @@
 package com.mcmanuellp.woodlandsworld.utility;
 
 /**
- * Maybe -s-t-o-l-e-n- adapted from someone (P a h i m a r)
+ * Maybe !(stolen) adapted from someone (P*a~h%i>m?a#r)
  */
 
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 public class LogHelper

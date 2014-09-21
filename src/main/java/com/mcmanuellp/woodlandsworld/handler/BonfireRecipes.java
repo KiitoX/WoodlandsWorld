@@ -1,5 +1,7 @@
 package com.mcmanuellp.woodlandsworld.handler;
 
+import com.mcmanuellp.woodlandsworld.block.BlockBonfire;
+import com.mcmanuellp.woodlandsworld.block.BlockWW;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -7,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,7 +20,6 @@ public class BonfireRecipes
 	private static final BonfireRecipes smeltingBase = new BonfireRecipes();
 
 	private Map smeltingList = new HashMap();
-	private Map experienceList = new HashMap();
 
 	public static BonfireRecipes smelting()
 	{
@@ -26,28 +28,51 @@ public class BonfireRecipes
 
 	private BonfireRecipes()
 	{
-		this.addBlockRecipeToMap(Blocks.log, new ItemStack(Items.coal, 1, 1));
-		this.addBlockRecipeToMap(Blocks.log2, new ItemStack(Items.coal, 1, 1));
-		this.addBlockRecipeToMap(Blocks.netherrack, new ItemStack(Items.netherbrick));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log, 1, 0),
+		                             new ItemStack(Items.coal, 1, 1));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log, 1, 1),
+		                             new ItemStack(Items.coal, 1, 1));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log, 1, 2),
+		                             new ItemStack(Items.coal, 1, 1));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log, 1, 3),
+		                             new ItemStack(Items.coal, 1, 1));
 
-		this.addItemRecipeToMap(Items.clay_ball, new ItemStack(Items.brick));
-		this.addItemRecipeToMap(Items.beef, new ItemStack(Items.cooked_beef));
-		this.addItemRecipeToMap(Items.chicken, new ItemStack(Items.cooked_chicken));
-		this.addItemRecipeToMap(Items.porkchop, new ItemStack(Items.cooked_porkchop));
-		this.addItemRecipeToMap(Items.wheat, new ItemStack(Items.bread));
-		this.addItemRecipeToMap(Items.potato, new ItemStack(Items.baked_potato));
-		this.addItemRecipeToMap(Items.rotten_flesh, new ItemStack(Items.leather));
-		this.addItemRecipeToMap(Items.stick, new ItemStack(Blocks.torch));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log2, 1, 0),
+		                             new ItemStack(Items.coal, 1, 1));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.log2, 1, 1),
+		                             new ItemStack(Items.coal, 1, 1));
 
-		this.addItemStackRecipeToMap(new ItemStack(Items.fish, 1, 0), new ItemStack(Items.cooked_fished, 1, 0));
-		this.addItemStackRecipeToMap(new ItemStack(Items.fish, 1, 1), new ItemStack(Items.cooked_fished, 1, 1));
+		this.addItemStackRecipeToMap(new ItemStack(Blocks.netherrack, 1, 0),
+		                             new ItemStack(Items.netherbrick, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.clay_ball, 1, 0),
+		                             new ItemStack(Items.brick, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.beef, 1, 0),
+		                             new ItemStack(Items.cooked_beef, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.chicken, 1, 0),
+		                             new ItemStack(Items.cooked_chicken, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.porkchop, 1, 0),
+		                             new ItemStack(Items.cooked_porkchop, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.wheat, 1, 0),
+		                             new ItemStack(Items.bread, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.potato, 1, 0),
+		                             new ItemStack(Items.baked_potato, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.rotten_flesh, 1, 0),
+		                             new ItemStack(Items.leather, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.stick, 1, 0),
+		                             new ItemStack(Blocks.torch, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.fish, 1, 0),
+		                             new ItemStack(Items.cooked_fished, 1, 0));
+		this.addItemStackRecipeToMap(new ItemStack(Items.fish, 1, 1),
+		                             new ItemStack(Items.cooked_fished, 1, 1));
 	}
 
+	@Deprecated
 	public void addBlockRecipeToMap(Block component, ItemStack result)
 	{
 		this.addItemRecipeToMap(Item.getItemFromBlock(component), result);
 	}
 
+	@Deprecated
 	public void addItemRecipeToMap(Item component, ItemStack result)
 	{
 		this.addItemStackRecipeToMap(new ItemStack(component, 1, 32767), result);
@@ -55,6 +80,15 @@ public class BonfireRecipes
 
 	public void addItemStackRecipeToMap(ItemStack component, ItemStack result)
 	{
+		if(component.stackSize != 1)
+		{
+			component.stackSize = 1;
+		}
+		if(result.stackSize != 1)
+		{
+			result.stackSize = 1;
+		}
+
 		this.smeltingList.put(component, result);
 	}
 
@@ -77,13 +111,9 @@ public class BonfireRecipes
 		return (ItemStack)entry.getValue();
 	}
 
-	private boolean compareItemStack(ItemStack component, ItemStack result)
+	public boolean compareItemStack(ItemStack component, ItemStack result)
 	{
-		if(component != null)
-		{
-			return result.getItem() == component.getItem() && (result.getItemDamage() == 32767 || result.getItemDamage() == component.getItemDamage());
-		}
-		else return false;
+		return component != null && result.getItem() == component.getItem() && (result.getItemDamage() == 32767 || result.getItemDamage() == component.getItemDamage());
 	}
 
 	public Map getSmeltingList()
@@ -91,34 +121,34 @@ public class BonfireRecipes
 		return this.smeltingList;
 	}
 
-	@Deprecated
-	public float getSmeltingExperience(ItemStack component)
+	public static boolean smeltItem(EntityPlayer entityPlayer, World world, int x, int y, int z)
 	{
-		float ret = component.getItem().getSmeltingExperience(component);
-		if (ret != -1) return ret;
+		InventoryPlayer inv = entityPlayer.inventory;
 
-		Iterator iterator = this.experienceList.entrySet().iterator();
-		Map.Entry entry;
+		ItemStack heldItem = inv.getCurrentItem();
+		ItemStack result = smelting().getSmeltingResult(heldItem);
 
-		do
+		if(BlockWW.isMetadataAbove0(world, x, y, z))
 		{
-			if (!iterator.hasNext())
+			if(inv.getFirstEmptyStack() != -1)
 			{
-				return 0.0F;
+				inv.consumeInventoryItem(heldItem.getItem());
+				inv.addItemStackToInventory(new ItemStack(result.getItem(), 1, result.getItemDamage()));
+				BlockWW.decreaseBlockMetadata(world, x, y, z, 1, BlockBonfire.maxSubBlocks);
 			}
-
-			entry = (Map.Entry)iterator.next();
 		}
-		while (!this.compareItemStack(component, (ItemStack)entry.getKey()));
-
-		return (Float) entry.getValue();
+		return true;
 	}
+
+	//--------------------------------Totally Unused Methods-------------------------------------------------
 
 	public static int getSlotOfItem(ItemStack itemStack, EntityPlayer entityPlayer)
 	{
-		for (int i = 0; i < entityPlayer.inventory.mainInventory.length; ++i)
+		ItemStack[] mInv = entityPlayer.inventory.mainInventory;
+
+		for (int i = 0; i < mInv.length; ++i)
 		{
-			if (entityPlayer.inventory.mainInventory[i] != null && itemStack.areItemStacksEqual(entityPlayer.inventory.mainInventory[i], itemStack))
+			if (mInv[i] != null && ItemStack.areItemStacksEqual(mInv[i], itemStack))
 			{
 				return i;
 			}
@@ -129,9 +159,11 @@ public class BonfireRecipes
 
 	public static int getSlotOfItemBelow64(ItemStack itemStack, EntityPlayer entityPlayer)
 	{
-		for (int i = 0; i < entityPlayer.inventory.mainInventory.length; ++i)
+		ItemStack[] mInv = entityPlayer.inventory.mainInventory;
+
+		for (int i = 0; i < mInv.length; ++i)
 		{
-			if (entityPlayer.inventory.mainInventory[i] != null && itemStack.areItemStacksEqual(entityPlayer.inventory.mainInventory[i], itemStack) && entityPlayer.inventory.mainInventory[i].stackSize < 64)
+			if (mInv[i] != null && ItemStack.areItemStacksEqual(mInv[i], itemStack) && mInv[i].stackSize < 64 && mInv[i].stackSize > 0)
 			{
 				return i;
 			}
@@ -142,66 +174,16 @@ public class BonfireRecipes
 
 	public static boolean areSlotOfItemBelow64Available(ItemStack itemStack, EntityPlayer entityPlayer)
 	{
-		for (int i = 0; i < entityPlayer.inventory.mainInventory.length; ++i)
+		ItemStack[] mInv = entityPlayer.inventory.mainInventory;
+
+		for (int i = 0; i < mInv.length; ++i)
 		{
-			if (entityPlayer.inventory.mainInventory[i] != null && itemStack.areItemStacksEqual(entityPlayer.inventory.mainInventory[i], itemStack) && entityPlayer.inventory.mainInventory[i].stackSize < 64)
+			if (mInv[i] != null && ItemStack.areItemStacksEqual(mInv[i], itemStack) && mInv[i].stackSize < 64 && mInv[i].stackSize > 0)
 			{
 				return true;
 			}
 		}
 
 		return false;
-	}
-
-	public static boolean smeltItem(EntityPlayer entityPlayer)
-	{
-		InventoryPlayer inv = entityPlayer.inventory;
-
-		entityPlayer.inventory.inventoryChanged = true;
-
-		if(inv.getFirstEmptyStack() != -1) //space in inv
-		{
-			if(inv.hasItemStack(smelting().getSmeltingResult(inv.getCurrentItem()))) //does have item
-			{
-				if(areSlotOfItemBelow64Available(smelting().getSmeltingResult(inv.getCurrentItem()), entityPlayer)) //stack < 64 is available
-				{
-					--inv.getCurrentItem().stackSize;
-					++inv.mainInventory[getSlotOfItemBelow64(smelting().getSmeltingResult(inv.getCurrentItem()), entityPlayer)].stackSize;
-					return true;
-				}
-				else //no stack < 64 available
-				{
-					--inv.getCurrentItem().stackSize;
-					inv.mainInventory[inv.getFirstEmptyStack()] = smelting().getSmeltingResult(inv.getCurrentItem());
-					return true;
-				}
-			}
-			else // doesn't have item
-			{
-				--inv.getCurrentItem().stackSize;
-				inv.mainInventory[inv.getFirstEmptyStack()] = smelting().getSmeltingResult(inv.getCurrentItem());
-				return true;
-			}
-		}
-		else //no space in inv
-		{
-			if(inv.hasItemStack(smelting().getSmeltingResult(inv.getCurrentItem()))) //does have item
-			{
-				if(areSlotOfItemBelow64Available(smelting().getSmeltingResult(inv.getCurrentItem()), entityPlayer)) //stack < 64 is available
-				{
-					--inv.getCurrentItem().stackSize;
-					++inv.mainInventory[getSlotOfItemBelow64(smelting().getSmeltingResult(inv.getCurrentItem()), entityPlayer)].stackSize;
-					return true;
-				}
-				else //no stack < 64 available
-				{
-					return true;
-				}
-			}
-			else // doesn't have item
-			{
-				return true;
-			}
-		}
 	}
 }

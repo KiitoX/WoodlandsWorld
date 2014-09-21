@@ -4,11 +4,16 @@ public class CalcHelper
 {
 	public static float of16(float of16)
 	{
-		if(of16 < 1f)
-			of16 = 1f;
-		else if(of16 > 16f)
-			of16 = 16f;
+		if(of16 < 1F)
+		{
+			return 0F;
+		}
+		else
+		{
+			if(of16 < 1F)       {of16 = 1F;}
+			else if(of16 > 16F) {of16 = 16F;}
 
-		return 1f/16f*of16;
+			return 1F/16F*of16;
+		}
 	}
 }

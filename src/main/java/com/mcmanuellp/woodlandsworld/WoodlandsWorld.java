@@ -1,5 +1,6 @@
 package com.mcmanuellp.woodlandsworld;
 
+import com.mcmanuellp.woodlandsworld.handler.BonfireRecipes;
 import com.mcmanuellp.woodlandsworld.handler.ConfigurationHandler;
 import com.mcmanuellp.woodlandsworld.init.ModBlocks;
 import com.mcmanuellp.woodlandsworld.init.ModItems;
@@ -13,7 +14,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import sun.rmi.runtime.Log;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class WoodlandsWorld
@@ -30,7 +35,7 @@ public class WoodlandsWorld
         //init network handling, mod config, items & blocks
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
-        LogHelper.info("Pre Initialization Complete!");
+        LogHelper.info("Instance is now " + event.getModState());
         ModItems.init();
         ModBlocks.init();
     }
@@ -40,21 +45,21 @@ public class WoodlandsWorld
     {
         //init gui's, tile entities, crafting, general event handlers
 	    Recipes.init();
-        LogHelper.info("Initialization Complete!");
+	    LogHelper.info("Instance is now " + event.getModState());
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
         //init wrapping up everything
-        LogHelper.info("Post Initialization Complete!");
+	    LogHelper.info("Instance is now " + event.getModState());
 
 	    //debug---------------------------------------------------------------------------------
-	    for (String oreName : OreDictionary.getOreNames())
+	/*    for (String oreName : OreDictionary.getOreNames())
 	    {
 			LogHelper.info(oreName);
 		    OreDictionary.getOres(oreName);
-	    }
+	    }*/
 	    //--------------------------------------------------------------------------------------
     }
 }

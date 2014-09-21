@@ -2,9 +2,6 @@ package com.mcmanuellp.woodlandsworld.block;
 
 import com.mcmanuellp.woodlandsworld.handler.BonfireRecipes;
 import com.mcmanuellp.woodlandsworld.handler.ConfigurationHandler;
-import com.mcmanuellp.woodlandsworld.init.ModBlocks;
-import com.mcmanuellp.woodlandsworld.init.ModItems;
-import com.mcmanuellp.woodlandsworld.utility.CalcHelper;
 import com.mcmanuellp.woodlandsworld.utility.LogHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,34 +10,36 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class BlockBonfire extends BlockWW
 {
+	public static int maxSubBlocks = 16;
+
 	public BlockBonfire()
 	{
-		super(Material.wood);//TODO fix Creative Tabs, raise max Damage/fix SubBlocks & make recipes use Fuel Properly
+		super(Material.wood);//TODO fix Creative Tabs & SubBlocks or change Metadata to TileEntity (how?)
 		this.setHardness(0.8F);
 		this.setStepSound(soundTypeWood);
 		this.setTickRandomly(true);
 		this.setBlockName("bonfire");
-		this.setBlockBounds(CalcHelper.of16(2), 0, CalcHelper.of16(2), CalcHelper.of16(14), CalcHelper.of16(6), CalcHelper.of16(14));
+		this.setBlockBoundsOf16(2, 0, 2, 14, 6, 14);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
 	{
-		for(int i = 0; i < 16; ++i)
+		for(int i = 0; i < maxSubBlocks; ++i)
 		{
 			list.add(new ItemStack(item, 1, i));
 		}
@@ -48,24 +47,17 @@ public class BlockBonfire extends BlockWW
 
 	public int damageDropped(int p_149692_1_)
 	{
-		return p_149692_1_;
+		return 0;
 	}
 
 	//---------------------------------------------------
 
 	public boolean isBurning(IBlockAccess world, int x, int y, int z)
 	{
-		if(world.getBlockMetadata(x, y, z) > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return isMetadataAbove0(world, x, y, z);
 	}
 
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int i)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
 		return null;
 	}
@@ -87,28 +79,14 @@ public class BlockBonfire extends BlockWW
 
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
-		if(world.getBlockMetadata(x, y, z) > 0)
-		{
-			this.setLightLevel(0.8F);
-		}
-		else
-		{
-			this.setLightLevel(0.0F);
-		}
+		this.setLightLevel(isMetadataAbove0(world, x, y, z, 0.8F, 0.0F));
 	}
 
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer entityPlayer)
 	{
-		if(world.getBlockMetadata(x, y, z) > 0)
-		{
-			this.setLightLevel(0.8F);
-		}
-		else
-		{
-			this.setLightLevel(0.0F);
-		}
+		this.setLightLevel(isMetadataAbove0(world, x, y, z, 0.8F, 0.0F));
 
-		world.setBlock(x, y, z, this, world.getBlockMetadata(x, y, z), 1 & 2);
+		setBlockMetadata(world, x, y, z, world.getBlockMetadata(x, y, z), maxSubBlocks);
 	}
 
 	/**
@@ -118,11 +96,6 @@ public class BlockBonfire extends BlockWW
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random random)
 	{
-		if(random.nextInt(24) == 0)
-		{
-			world.playSound((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), "fire.fire", 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
-		}
-
 		double x1 = (float)x;
 		double y1 = (float)y;
 		double z1 = (float)z;
@@ -139,8 +112,13 @@ public class BlockBonfire extends BlockWW
 		double d080 = 0.80F;
 		double d095 = 0.95F;
 
-		if(this.getDamageValue(world, x, y, z) > 0)
+		if(isMetadataAbove0(world, x, y, z))
 		{
+			if(random.nextInt(24) == 0)
+			{
+				world.playSound((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), "fire.fire", 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+			}
+
 			if(ConfigurationHandler.bonfireTexture)
 			{
 				world.spawnParticle("smoke", x1 + dd05, y1 + d095, z1 + dd05, 0.0D, 0.0D, 0.0D);
@@ -200,7 +178,7 @@ public class BlockBonfire extends BlockWW
 	 * @param y             int y Coordinate
 	 * @param z             int z Coordinate
 	 * @param entityPlayer  player that interacted
-	 * @param p_149727_6_   int side player interacted with (0=bottom, 1=top, 2=north, 3=south, 4=west, 5=east)
+	 * @param side          int side player interacted with (0=bottom, 1=top, 2=north, 3=south, 4=west, 5=east)
 	 * @param p_149727_7_   float camera yaw
 	 * @param p_149727_8_   float camera yaw
 	 * @param p_149727_9_   float camera yaw
@@ -208,33 +186,51 @@ public class BlockBonfire extends BlockWW
 	 * @return              has to be true anyways
 	 */
 
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float p_149727_7_, float p_149727_8_, float p_149727_9_)
 	{
-		if(entityPlayer.getHeldItem() != null)
+		InventoryPlayer inv = entityPlayer.inventory;
+		BonfireRecipes bbq = BonfireRecipes.smelting();
+
+		if(entityPlayer.getHeldItem() != null)//TODO fix all the f***ing things
 		{
-			if(BonfireRecipes.smelting().getSmeltingResult(entityPlayer.inventory.getCurrentItem()) != null)
+			if(bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.coal, 1, 0)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.coal, 1, 1)))
 			{
-				BonfireRecipes.smeltItem(entityPlayer);
-			//	entityPlayer.inventory.inventoryChanged = false;//------------------------???maybe???
-			}
-			if(entityPlayer.inventory.getCurrentItem().isItemEqual(new ItemStack(Items.coal, 1, 0)) || entityPlayer.inventory.getCurrentItem().isItemEqual(new ItemStack(Items.coal, 1, 1)))
-			{
-				if(world.getBlockMetadata(x, y, z) < 15)
+				if(world.getBlockMetadata(x, y, z) < maxSubBlocks - 1)
 				{
-					--entityPlayer.inventory.getCurrentItem().stackSize;
-					world.setBlock(x, y, z, this, world.getBlockMetadata(x, y, z) + 1, 1 & 2);
+					--inv.getCurrentItem().stackSize;
+					increaseBlockMetadata(world, x, y, z, 8, maxSubBlocks);
 					LogHelper.info("Block Metadata of: " + x + " : " + y + " : " + z + " : " + world.getBlockMetadata(x, y, z));
 				}
 			}
-			else if(entityPlayer.inventory.getCurrentItem().isItemEqual(new ItemStack(Items.water_bucket)))
+			if(bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 0)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 1)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 2)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 3)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 4)) ||
+			   bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Blocks.planks, 1, 5)))
 			{
-				--entityPlayer.inventory.getCurrentItem().stackSize;
-				entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bucket));
-				world.setBlock(x, y, z, this, 0, 2);
+				if(world.getBlockMetadata(x, y, z) < maxSubBlocks - 1)
+				{
+					--inv.getCurrentItem().stackSize;
+					increaseBlockMetadata(world, x, y, z, 1, maxSubBlocks);
+					LogHelper.info("Block Metadata of: " + x + " : " + y + " : " + z + " : " + world.getBlockMetadata(x, y, z));
+				}
 			}
-			else if(entityPlayer.inventory.getCurrentItem().isItemEqual(new ItemStack(Items.diamond)))
+			if(bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.water_bucket)))
+			{
+				inv.consumeInventoryItem(Items.water_bucket);
+				inv.addItemStackToInventory(new ItemStack(Items.bucket));
+				setBlockMetadata(world, x, y, z, 0, maxSubBlocks);
+			}
+			if(bbq.compareItemStack(inv.getCurrentItem(), new ItemStack(Items.diamond)))
 			{
 				LogHelper.info("Block Metadata of: " + x + " : " + y + " : " + z + " : " + world.getBlockMetadata(x, y, z));
+			}
+			if(bbq.getSmeltingResult(inv.getCurrentItem()) != null)
+			{
+				BonfireRecipes.smeltItem(entityPlayer, world, x, y, z);
+			//	inv.inventoryChanged = false;//------------------------???maybe???
 			}
 		}
 		return true;
@@ -246,7 +242,7 @@ public class BlockBonfire extends BlockWW
 	{
 		if(ConfigurationHandler.bonfireTexture)
 		{
-			blockIcon = iconRegister.registerIcon(String.format("%s_", getUnwrappedUnlocalizedName(this.getUnlocalizedName())));
+			blockIcon = iconRegister.registerIcon(String.format("%s_old", getUnwrappedUnlocalizedName(this.getUnlocalizedName())));
 		}
 		else
 		{
@@ -254,16 +250,16 @@ public class BlockBonfire extends BlockWW
 		}
 	}
 
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+	public boolean canPlaceBlockAt(World world, int x, int y, int z)
 	{
-		return World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4);
+		return World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
 	}
 
-	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5Block)
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
 	{
-		if (!World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4))
+		if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z))
 		{
-			par1World.setBlockToAir(par2, par3, par4);
+			world.setBlockToAir(x, y, z);
 		}
 	}
 }

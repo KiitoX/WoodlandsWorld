@@ -1,6 +1,8 @@
 package com.mcmanuellp.woodlandsworld.init;
 
+import com.mcmanuellp.woodlandsworld.handler.BonfireRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
