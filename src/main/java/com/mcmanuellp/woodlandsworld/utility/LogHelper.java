@@ -6,6 +6,7 @@ package com.mcmanuellp.woodlandsworld.utility;
 
 import com.mcmanuellp.woodlandsworld.reference.Reference;
 import cpw.mods.fml.common.FMLLog;
+import net.minecraft.command.ICommandSender;
 import org.apache.logging.log4j.Level;
 
 public class LogHelper

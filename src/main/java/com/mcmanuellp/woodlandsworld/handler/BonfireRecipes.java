@@ -1,7 +1,8 @@
 package com.mcmanuellp.woodlandsworld.handler;
 
-import com.mcmanuellp.woodlandsworld.block.BlockBonfire;
 import com.mcmanuellp.woodlandsworld.block.BlockWW;
+import com.mcmanuellp.woodlandsworld.tileentity.TileEntityBonfire;
+import com.mcmanuellp.woodlandsworld.utility.SpawnHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class BonfireRecipes
 {
 	private static final BonfireRecipes smeltingBase = new BonfireRecipes();
@@ -106,12 +108,12 @@ public class BonfireRecipes
 
 			entry = (Map.Entry)iterator.next();
 		}
-		while (!this.compareItemStack(component, (ItemStack) entry.getKey()));
+		while (!this.compareIS(component, (ItemStack) entry.getKey()));
 
 		return (ItemStack)entry.getValue();
 	}
 
-	public boolean compareItemStack(ItemStack component, ItemStack result)
+	public boolean compareIS(ItemStack component, ItemStack result)
 	{
 		return component != null && result.getItem() == component.getItem() && (result.getItemDamage() == 32767 || result.getItemDamage() == component.getItemDamage());
 	}
@@ -121,26 +123,29 @@ public class BonfireRecipes
 		return this.smeltingList;
 	}
 
-	public static boolean smeltItem(EntityPlayer entityPlayer, World world, int x, int y, int z)
+	public static boolean smeltItem(ItemStack itemStack, EntityPlayer entityPlayer, TileEntityBonfire tileEntity, World world, int x, int y, int z)
 	{
 		InventoryPlayer inv = entityPlayer.inventory;
+		ItemStack result = smelting().getSmeltingResult(itemStack);
+		ItemStack resultStack = new ItemStack(result.getItem(), 1, result.getItemDamage());
 
-		ItemStack heldItem = inv.getCurrentItem();
-		ItemStack result = smelting().getSmeltingResult(heldItem);
+		BlockWW blockWW = BlockWW.blockWW();
 
-		if(BlockWW.isMetadataAbove0(world, x, y, z))
+		if(tileEntity.hasFuel())
 		{
 			if(inv.getFirstEmptyStack() != -1)
 			{
-				inv.consumeInventoryItem(heldItem.getItem());
-				inv.addItemStackToInventory(new ItemStack(result.getItem(), 1, result.getItemDamage()));
-				BlockWW.decreaseBlockMetadata(world, x, y, z, 1, BlockBonfire.maxSubBlocks);
+				// TODO get an better method
+				SpawnHelper.spawnItem(world, resultStack, x, y, z);
+				entityPlayer.dropPlayerItemWithRandomChoice(resultStack, false);
+				blockWW.addItemAndDecreaseHeldItem(entityPlayer, resultStack, 1);
+				tileEntity.removeFuel(1);
 			}
 		}
 		return true;
 	}
 
-	//--------------------------------Totally Unused Methods-------------------------------------------------
+	//--------------------------------V-Unused Methods-V-------------------------------------------------
 
 	public static int getSlotOfItem(ItemStack itemStack, EntityPlayer entityPlayer)
 	{

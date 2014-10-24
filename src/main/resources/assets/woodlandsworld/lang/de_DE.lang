@@ -1,0 +1,26 @@
+# Tooltips
+info.woodlandsworld.general.pressShift=L_SHIFT für mehr Informationen
+
+info.woodlandsworld.spawnEntity.info_0=Zurzeit gewählte Entity
+info.woodlandsworld.spawnEntity.info_1=SNEAK + USE umbenanntes Item um Entity zu setzen
+info.woodlandsworld.spawnEntity.info_2=nenn Item um um Entity zu wählen
+info.woodlandsworld.spawnEntity.info_3=Benutz die gleichen Entity Namen die du für /summon [] benutzen würdest
+info.woodlandsworld.spawnEntity.info_4=Zum Beispiel
+entity.null.name=keine
+
+# Keys
+keys.woodlandsworld.category=Woodlands World
+keys.woodlandsworld.charge=Laden
+keys.woodlandsworld.release=Lösen
+
+# Creative Tabs
+itemGroup.woodlandsworld=Woodlands World
+
+# Items
+item.woodlandsworld:hungerDebug.name=Hunger Debug Item
+item.woodlandsworld:spawnEntity.name=Spawn Entity
+
+# Blocks
+tile.woodlandsworld:logPile.name=Holzstapel
+tile.woodlandsworld:bonfire.name=Lagerfeuer
+tile.woodlandsworld:twig.name=Zweig

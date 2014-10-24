@@ -1,5 +1,26 @@
+# Tooltips
+info.woodlandsworld.general.pressShift=Press L_SHIFT for more information
+
+info.woodlandsworld.spawnEntity.info_0=Currently selected entity
+info.woodlandsworld.spawnEntity.info_1=SNEAK + USE renamed item to set entity
+info.woodlandsworld.spawnEntity.info_2=Rename item to choose the entity
+info.woodlandsworld.spawnEntity.info_3=Use the same entity names you would use for /summon []
+info.woodlandsworld.spawnEntity.info_4=For example
+entity.null.name=none
+
+# Keys
+keys.woodlandsworld.category=Woodlands World
+keys.woodlandsworld.charge=Charge
+keys.woodlandsworld.release=Release
+
+# Creative Tabs
+itemGroup.woodlandsworld=Woodlands World
+
+# Items
 item.woodlandsworld:hungerDebug.name=Hunger Debug Item
+item.woodlandsworld:spawnEntity.name=Spawn Entity
+
+# Blocks
 tile.woodlandsworld:logPile.name=Log Pile
 tile.woodlandsworld:bonfire.name=Bonfire
 tile.woodlandsworld:twig.name=Twig
-itemGroup.woodlandsworld=Woodlands World
