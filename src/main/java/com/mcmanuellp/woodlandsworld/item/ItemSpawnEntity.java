@@ -7,7 +7,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -36,7 +35,7 @@ public class ItemSpawnEntity extends ItemWW
 				if(itemStack.hasDisplayName())
 				{
 					setEntity(itemStack, itemStack.getDisplayName());
-					LogHelper.info("EntityName set to: " + itemStack.stackTagCompound.getString("entity"));
+					LogHelper.info("EntityName set to: " + itemStack.getTagCompound().getString("Entity"));
 					itemStack.func_135074_t();
 				}
 				else
@@ -63,11 +62,16 @@ public class ItemSpawnEntity extends ItemWW
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean yn)
 	{
+		if(itemStack.getTagCompound().hasNoTags())
+		{
+			setEntity(itemStack, null);
+		}
+
 		NBTTagString nbttagstring;
 
-		if(itemStack.stackTagCompound.getTag("Entity").toString() != null)
+		if(itemStack.stackTagCompound.getString("Entity") != null)
 		{
-			nbttagstring = new NBTTagString(itemStack.stackTagCompound.getTag("Entity").toString());
+			nbttagstring = new NBTTagString(itemStack.stackTagCompound.getString("Entity"));
 		}
 		else
 		{
@@ -76,8 +80,7 @@ public class ItemSpawnEntity extends ItemWW
 
 		list.add(StatCollector.translateToLocal("info.woodlandsworld.spawnEntity.info_0") + ":");
 
-		list.add(StatCollector.translateToLocal("entity." + nbttagstring.toString() + ".name"));
-
+		list.add(StatCollector.translateToLocal("entity." + nbttagstring + ".name"));
 
 		list.add(StatCollector.translateToLocal("info.woodlandsworld.general.pressShift"));
 
@@ -92,15 +95,15 @@ public class ItemSpawnEntity extends ItemWW
 
 	public void setEntity(ItemStack itemStack, String entity)
 	{
-		NBTTagString nbttagstring;
+		String string;
 
 		if(entity != null)
 		{
-			nbttagstring = new NBTTagString(entity);
+			string = entity;
 		}
 		else
 		{
-			nbttagstring = new NBTTagString("null");
+			string = "null";
 		}
 
 		if (!itemStack.hasTagCompound())
@@ -108,6 +111,6 @@ public class ItemSpawnEntity extends ItemWW
 			itemStack.setTagCompound(new NBTTagCompound());
 		}
 
-		itemStack.getTagCompound().setTag("Entity", nbttagstring);
+		itemStack.getTagCompound().setString("Entity", string);
 	}
 }

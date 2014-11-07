@@ -17,12 +17,28 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-1.0"
-group= "com.mcmanuellp.woodlandsworld" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "WoodlandsWorld"
+compileJava.options.encoding = 'UTF-8'
+
+// define the properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+group= config.group_name
+version = config.mod_version
+archivesBaseName = "[${config.minecraft_version}]${config.mod_id}" // "WoodlandsWorld"
 
 minecraft {
-    version = "1.7.10-10.13.1.1217"
+    version = config.minecraft_version + "-" + config.forge_version //"1.7.10-10.13.2.1230"
+    runDir = "run"
+    assetDir = "run/assets"
+    replace '@MOD_VERSION@', config.mod_version
+    replace '@MINECRAFT_VERSION@', config.minecraft_version
     /** to update forge, update ^ this number to the matching forge version i need,
      *  then open idea's terminal and do 'gradlew clean'
      *  to update gradle do 'gradlew clean --refresh-dependencies' instead
@@ -30,6 +46,9 @@ minecraft {
      *  then 'gradlew idea' then refresh project that's it!
      *
      *  don't forget the reference class and mcmod.info if MCVersion changes
+     *---------------------------------------------------------------------------------
+     *  to build run 'gradlew build' in terminal
+     *  file is to be found in %PROJECT%\build\libs
      *
      *///MCManuelLP wrote this comment
 }
@@ -52,20 +71,22 @@ dependencies {
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    // replace stuff in the files we want.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        // replaces
+        expand ([
+                'mod_version': config.mod_version,
+                'forge_version': config.forge_version,
+                'minecraft_version': config.minecraft_version,
+        ])
     }
-        
-    // copy everything else, thats not the mcmod.info
+
+    // copy everything else that we didnt do before
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
+        exclude '**/*.properties'
     }
 }
