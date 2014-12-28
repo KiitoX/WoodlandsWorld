@@ -9,3 +9,6 @@ Woodlands World Mod Plans
 * Some kind of implementation for rotting food replacing the food in game right now
 
 * Update and implement [Block Physics Mod] (http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1283267-)
+
+
+* this mod is dead for now(hasnt implemented anything really :-/ ).
